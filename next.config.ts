@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  devIndicators: false,
   /* config options here */
   env: {
     PORT: process.env.PORT || "3000",
