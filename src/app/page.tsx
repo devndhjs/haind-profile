@@ -1,33 +1,30 @@
 "use client";
 
 import { JSX } from "react";
-import styles from "./page.module.css";
-import { FaFacebook, FaLinkedin, FaTwitter, FaInstagram } from "react-icons/fa";
 
 export default function ProfilePage(): JSX.Element {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.profile}>
-        <div className={styles.overlay}>
-          <div className={styles.about}>
-            <h4>Kim Sarah</h4>
-            <span>Software Developer</span>
-          </div>
-          <ul className={styles["social-icons"]}>
-            <li>
-              <FaFacebook />
-            </li>
-            <li>
-              <FaLinkedin />
-            </li>
-            <li>
-              <FaTwitter />
-            </li>
-            <li>
-              <FaInstagram />
-            </li>
-          </ul>
-        </div>
+    <div className="container my-4">
+      <div className="d-flex flex-column gap-2" style={{ maxWidth: "300px" }}>
+        <h2 className="text-dark mb-3" style={{ fontSize: "18px" }}>
+          CB Trường An Loạn - Mi Hô Hỗn Chiến
+        </h2>
+        <a
+          href="https://wlyh5_battle.idngoalong.zing.vn/h5/?bid=2503260457021418&version=master&host=s8009.idngoalong.zing.vn"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-sm btn-primary text-white"
+        >
+          Tinh anh hộ giá 2
+        </a>
+        <a
+          href="https://wlyh5_battle.idngoalong.zing.vn/h5/?bid=2503260516373339&version=master&host=s8009.idngoalong.zing.vn"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-sm btn-primary text-white"
+        >
+          Đổng Thừa
+        </a>
       </div>
     </div>
   );
