@@ -1,4 +1,4 @@
-// import Header from "./components/Header";
+import Header from "./components/Header";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -10,7 +10,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body style={{ margin: 0 }}>
-        {/* <Header /> */}
+        <Header />
         {children}
       </body>
     </html>
