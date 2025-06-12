@@ -1,34 +1,32 @@
 # Stage 1: Build ứng dụng
 FROM node:18-alpine AS builder
 
-# Set thư mục làm việc
 WORKDIR /app
 
-# Copy file package
 COPY package.json package-lock.json ./
-
-# Cài đặt dependencies để build
 RUN npm ci
 
-# Copy toàn bộ mã nguồn vào
 COPY . .
-
-# Build ứng dụng Next.js
 RUN npm run build
 
-# Stage 2: Tạo image nhỏ cho production
+# Stage 2: Image production nhỏ gọn
 FROM node:18-alpine AS runner
 
 WORKDIR /app
 
-# Chỉ copy các file cần thiết để chạy production
+# Copy những thứ cần để chạy
 COPY --from=builder /app/package.json /app/package-lock.json ./
 COPY --from=builder /app/.next .next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/node_modules ./node_modules
 
-# EXPOSE có thể hardcode hoặc dùng ARG + ENV nếu cần build linh hoạt
-EXPOSE ${PORT}
+# Copy entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Bắt đầu chạy ứng dụng
-CMD ["npm", "run", "start"]
+# EXPOSE port (nếu PORT không có default, dùng 3000 mặc định)
+ENV PORT=3000
+EXPOSE $PORT
+
+# Dùng entrypoint custom để generate env.js trước khi chạy app
+ENTRYPOINT ["/entrypoint.sh"]
